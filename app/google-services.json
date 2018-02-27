@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "374594596496",
+    "firebase_url": "https://flashchat-ccba1.firebaseio.com",
+    "project_id": "flashchat-ccba1",
+    "storage_bucket": "flashchat-ccba1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374594596496:android:14464c9dff1e93d1",
+        "android_client_info": {
+          "package_name": "com.example.nagys.chatty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374594596496-u149f85o25iesg5uoghk30pa78sn6air.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nagys.chatty",
+            "certificate_hash": "db4652c4ff2748b1e486839fafdf3a58af1ed0e7"
+          }
+        },
+        {
+          "client_id": "374594596496-9umg8n2oqeukc5ppb0317ihu0ij3pvat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFZ7qSfB2VhX5ZR7dcY6j1nfvJ0V_yHgY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374594596496-9umg8n2oqeukc5ppb0317ihu0ij3pvat.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "374594596496-452c3n0nm0k1ad1bhuq45tec6drtk2p4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.szilardnagy.Flash-Chat"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
