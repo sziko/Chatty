@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
-        finish();
     }
 
     private boolean isPasswordValid(String password) {
