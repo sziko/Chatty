@@ -6,4 +6,7 @@
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="display_name">Display Name</string>
+    <string name="prompt_msg">Type a message</string>
+    <string name="sample_message">Hello!</string>
 </resources>

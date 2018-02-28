@@ -4,15 +4,19 @@ package com.example.nagys.chatty;
  * Created by szilardnagy on 28/02/2018.
  */
 
-public class User {
+public class Message {
 
     private String user;
     private String message;
 
-    public User(String user, String message) {
+    public Message(String user, String message) {
 
          this.message = message;
          this.user = user;
+    }
+
+    public Message() {
+
     }
 
     public String getUser() {
