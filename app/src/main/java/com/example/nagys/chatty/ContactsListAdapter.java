@@ -1,6 +1,8 @@
 package com.example.nagys.chatty;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
 
     private List<Contact> mContactList;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imgProfile;
         private TextView txtDisplayName;
@@ -30,8 +32,14 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             txtDisplayName = itemView.findViewById(R.id.txt_display_name);
             txtLastMessage = itemView.findViewById(R.id.txt_last_message);
 
+            itemView.setOnClickListener(this);
+
         }
 
+        @Override
+        public void onClick(View view) {
+            Log.d("Position: ", String.valueOf(getAdapterPosition()));
+        }
     }
 
     public ContactsListAdapter(List<Contact> contactList) {
@@ -48,6 +56,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
 
     @Override
     public void onBindViewHolder(ContactsListAdapter.ViewHolder holder, int position) {
+
 
         holder.txtDisplayName.setText(mContactList.get(position).getDisplayName());
         holder.txtLastMessage.setText(mContactList.get(position).getLastMessage());
