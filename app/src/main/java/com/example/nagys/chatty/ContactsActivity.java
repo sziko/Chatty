@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,10 +66,14 @@ public class ContactsActivity extends AppCompatActivity {
 
         if (id == R.id.action_add_contact) {
             Log.d("Actions: ", " Add contact");
+
+            Toast.makeText(this, "\"Add Contact\" feature not yet working!", Toast.LENGTH_SHORT).show();
         }
 
         if(id == R.id.action_create_group) {
             Log.d("Actions: ", "Create group");
+
+            Toast.makeText(this, "\"Create Group\" feature not yet working!", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
