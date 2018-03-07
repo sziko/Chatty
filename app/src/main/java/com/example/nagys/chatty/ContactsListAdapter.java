@@ -1,5 +1,6 @@
 package com.example.nagys.chatty;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,13 +33,17 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             txtDisplayName = itemView.findViewById(R.id.txt_display_name);
             txtLastMessage = itemView.findViewById(R.id.txt_last_message);
 
+
             itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
-            Log.d("Position: ", String.valueOf(getAdapterPosition()));
+            // Log.d("Position: ", String.valueOf(getAdapterPosition()));
+
+            Context context = itemView.getContext();
+            context.startActivity(new Intent(context, ChatActivity.class));
         }
     }
 

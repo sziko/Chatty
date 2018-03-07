@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
-    android:background="?android:attr/selectableItemBackground"
     tools:context="com.example.nagys.chatty.ContactsActivity">
 
 </android.support.v7.widget.RecyclerView>
