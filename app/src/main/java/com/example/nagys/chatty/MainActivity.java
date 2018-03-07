@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void startChatActivity() {
+    private void startContactListActivity() {
 
-        Intent loginIntent = new Intent(MainActivity.this, ChatActivity.class);
+        Intent loginIntent = new Intent(MainActivity.this, ContactsActivity.class);
         startActivity(loginIntent);
         finish();
     }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                         hud.dismiss();
 
-                        startChatActivity();
+                        startContactListActivity();
                     }
                     else {
                         // login failed
