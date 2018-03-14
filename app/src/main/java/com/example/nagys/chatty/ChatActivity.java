@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,7 +29,10 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText edtMessage;
     private ChatListAdapter chatAdapter;
-    private ListView mListView;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mRecyclerViewAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,18 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        mListView = findViewById(R.id.chat_list_view);
+        mRecyclerView = findViewById(R.id.chat_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+
+        mRecyclerViewAdapter = new ChatListAdapter(mDatabaseReference, mAuth.getCurrentUser().getDisplayName());
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
     }
 
@@ -105,14 +121,6 @@ public class ChatActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .setView(editText)
                 .show();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        chatAdapter = new ChatListAdapter(this, mDatabase, mAuth.getCurrentUser().getDisplayName());
-        mListView.setAdapter(chatAdapter);
     }
 
     @Override
