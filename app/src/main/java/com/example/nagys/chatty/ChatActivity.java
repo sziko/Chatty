@@ -42,10 +42,6 @@ public class ChatActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser().getDisplayName() == null) {
-            createDisplayName();
-        }
-
         ImageView imgSend = findViewById(R.id.img_send);
 
         imgSend.setOnClickListener(new View.OnClickListener() {
@@ -90,37 +86,6 @@ public class ChatActivity extends AppCompatActivity {
             edtMessage.setText("");
         }
 
-    }
-
-
-    public void createDisplayName() {
-
-        final EditText editText = new EditText(ChatActivity.this);
-
-       new AlertDialog.Builder(ChatActivity.this)
-                .setTitle("Display Name")
-                .setMessage("Insert a name that others will see...")
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        FirebaseUser user = mAuth.getCurrentUser();
-
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(editText.getText().toString()).build();
-
-                        user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                // after display name was updated
-                            }
-                        });
-
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .setView(editText)
-                .show();
     }
 
     @Override

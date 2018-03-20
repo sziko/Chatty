@@ -73,8 +73,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                         hud.dismiss();
 
-                        Intent chatIntent = new Intent(RegisterActivity.this, ChatActivity.class);
-                        startActivity(chatIntent);
+                        Intent contactsIntent = new Intent(RegisterActivity.this, ContactsActivity.class);
+                        startActivity(contactsIntent);
                         finish();
                     }
                     else {
