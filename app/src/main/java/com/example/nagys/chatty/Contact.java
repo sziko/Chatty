@@ -29,4 +29,8 @@ public class Contact {
     public int getProfilePictureId() {
         return profilePictureId;
     }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 }

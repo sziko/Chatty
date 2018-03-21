@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.Objects;
@@ -25,7 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtConfirmPassword;
 
     private FirebaseAuth mAuth;
-
     private KProgressHUD hud;
 
     @Override
@@ -55,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
     // creating user with email and password
     private void createFirebaseUser() {
 
-        String email = edtEmailAdress.getText().toString();
+        final String email = edtEmailAdress.getText().toString();
         String password = edtPassword.getText().toString();
         String confirmPwd = edtConfirmPassword.getText().toString();
 
@@ -74,12 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
                         hud.dismiss();
 
                         Intent contactsIntent = new Intent(RegisterActivity.this, ContactsActivity.class);
+                        contactsIntent.putExtra("email", email);
+                        contactsIntent.putExtra("uid", mAuth.getCurrentUser().getUid());
                         startActivity(contactsIntent);
                         finish();
                     }
                     else {
                         // user creation failed
-                        Functionality.showErrorDialog("Oops!", "Something went wrong. Check internet connection!", RegisterActivity.this);
+                        hud.dismiss();
+                        Functionality.showErrorDialog("Oops!", "Email already registered!", RegisterActivity.this);
                     }
                 }
             });
