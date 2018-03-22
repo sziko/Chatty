@@ -1,14 +1,17 @@
-package com.example.nagys.chatty;
+package com.example.nagys.chatty.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.nagys.chatty.Activities.ChatActivity;
+import com.example.nagys.chatty.Classes.Contact;
+import com.example.nagys.chatty.R;
 
 import java.util.List;
 

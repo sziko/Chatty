@@ -1,4 +1,4 @@
-package com.example.nagys.chatty;
+package com.example.nagys.chatty.Classes;
 
 /**
  * Created by szilardnagy on 28/02/2018.

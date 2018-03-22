@@ -1,10 +1,8 @@
-package com.example.nagys.chatty;
+package com.example.nagys.chatty.Classes;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
-import com.example.nagys.chatty.RegisterActivity;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 /**

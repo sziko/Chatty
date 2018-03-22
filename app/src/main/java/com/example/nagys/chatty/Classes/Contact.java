@@ -1,4 +1,4 @@
-package com.example.nagys.chatty;
+package com.example.nagys.chatty.Classes;
 
 import android.widget.ImageView;
 

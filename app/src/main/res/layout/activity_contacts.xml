@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
-    tools:context="com.example.nagys.chatty.ContactsActivity">
+    tools:context="com.example.nagys.chatty.Activities.ContactsActivity">
 
 </android.support.v7.widget.RecyclerView>

@@ -1,4 +1,4 @@
-package com.example.nagys.chatty;
+package com.example.nagys.chatty.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.nagys.chatty.Adapters.ContactsListAdapter;
+import com.example.nagys.chatty.Classes.Contact;
+import com.example.nagys.chatty.R;
+import com.example.nagys.chatty.Classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ContactsActivity extends AppCompatActivity {
 
@@ -96,17 +99,14 @@ public class ContactsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_add_contact) {
-            Log.d("Actions: ", " Add contact");
+        if (id == R.id.search) {
 
-
-            Toast.makeText(this, "\"Add Contact\" feature not yet working!", Toast.LENGTH_SHORT).show();
         }
 
         if(id == R.id.action_create_group) {
-            Log.d("Actions: ", "Create group");
 
-            Toast.makeText(this, "\"Create Group\" feature not yet working!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(ContactsActivity.this, SearchActivity.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
