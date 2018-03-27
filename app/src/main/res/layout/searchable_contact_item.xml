@@ -2,30 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="?android:attr/selectableItemBackground">
 
-    <CheckBox
-        android:id="@+id/chb_searchable_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
+    <!--<CheckBox-->
+        <!--android:id="@+id/chb_searchable_user"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginStart="16dp" />-->
 
 
     <ImageView
         android:id="@+id/img_searchable_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/chb_searchable_user"
         android:layout_margin="16dp"
         android:adjustViewBounds="true"
         android:maxHeight="50dp"
         android:maxWidth="50dp"
         android:src="@drawable/profile_pic"
-        android:layout_toEndOf="@id/chb_searchable_user" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/txt_searchable_name"

@@ -11,11 +11,13 @@ public class Contact {
     private String displayName;
     private String lastMessage;
     private int profilePictureId;
+    private String uid;
 
-    public Contact(String displayName, String lastMessage, int profilePictureId) {
+    public Contact(String displayName, String lastMessage, int profilePictureId, String uid) {
         this.displayName = displayName;
         this.lastMessage = lastMessage;
         this.profilePictureId = profilePictureId;
+        this.uid = uid;
     }
 
     public String getDisplayName() {
@@ -30,7 +32,7 @@ public class Contact {
         return profilePictureId;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public String getUid() {
+        return uid;
     }
 }

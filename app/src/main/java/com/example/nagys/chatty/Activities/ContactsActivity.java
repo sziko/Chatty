@@ -2,20 +2,20 @@ package com.example.nagys.chatty.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.nagys.chatty.Adapters.ContactsListAdapter;
 import com.example.nagys.chatty.Classes.Contact;
+import com.example.nagys.chatty.Classes.DatabaseHelper;
 import com.example.nagys.chatty.R;
 import com.example.nagys.chatty.Classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +40,7 @@ public class ContactsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseReference;
+    private DatabaseHelper mDatabaseHelper;
 
     private String email;
     private String uid;
@@ -49,6 +50,8 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        mDatabaseHelper = new DatabaseHelper(this);
 
         Intent thisIntent = getIntent();
         email = thisIntent.getStringExtra("email");
@@ -63,18 +66,21 @@ public class ContactsActivity extends AppCompatActivity {
 
         mContactList = new ArrayList<>();
 
+        Cursor contactsFromDB = mDatabaseHelper.getAllData();
 
-        mContactList.add(new Contact("Nagy Szilard", "adasdasdasdasdas", R.drawable.profile_pic));
-        mContactList.add(new Contact("Tovisi", "hello", R.drawable.profile_pic));
-        mContactList.add(new Contact("Daniel", "laksjdakjsdas;ldkalskj", R.drawable.profile_pic));
-        mContactList.add(new Contact("Nagy", "adasdasqwilwekjnsdklvjbdasdasdas", R.drawable.profile_pic));
-        mContactList.add(new Contact("Szilard", "adasdaSziasdasdasdas", R.drawable.profile_pic));
-        mContactList.add(new Contact("Oooke", "Ooooooooke", R.drawable.profile_pic));
-        mContactList.add(new Contact("Lajos", "laksmdllml", R.drawable.profile_pic));
-        mContactList.add(new Contact("Matyus", "Szia", R.drawable.profile_pic));
-        mContactList.add(new Contact("NSz", "adasdasdasdasdasdadf;slgjdkfjnvsdklfnvasdasdas", R.drawable.profile_pic));
-        mContactList.add(new Contact("Isti", "kajsndkasn dkjasnd", R.drawable.profile_pic));
-        mContactList.add(new Contact("Varga", "popopoipoipoi", R.drawable.profile_pic));
+        if(contactsFromDB.getCount() != 0) {
+
+
+            while(contactsFromDB.moveToNext()) {
+
+                String c_uid = contactsFromDB.getString(0);
+                String c_dispName = contactsFromDB.getString(1);
+                String c_picUrl = contactsFromDB.getString(2);
+
+                mContactList.add(new Contact(c_dispName, "", R.drawable.profile_pic, c_uid));
+            }
+
+        }
 
 
         mRecyclerView = findViewById(R.id.recycler_view);
@@ -103,7 +109,7 @@ public class ContactsActivity extends AppCompatActivity {
 
         }
 
-        if(id == R.id.action_create_group) {
+        if(id == R.id.action_add_contact) {
 
             startActivity(new Intent(ContactsActivity.this, SearchActivity.class));
             finish();

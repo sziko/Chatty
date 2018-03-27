@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.nagys.chatty.Adapters.ContactsListAdapter;
 import com.example.nagys.chatty.Adapters.SearchListAdapter;
 import com.example.nagys.chatty.Classes.Contact;
+import com.example.nagys.chatty.Classes.DatabaseHelper;
 import com.example.nagys.chatty.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +37,6 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Contact> mContactList;
-    private int nr = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +67,6 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                //showQueryResult(newText);
-
                 return false;
             }
         });
@@ -81,26 +78,22 @@ public class SearchActivity extends AppCompatActivity {
         mContactList = new ArrayList<>();
         createUsersList();
 
-        Log.d("Nr", String.valueOf(nr));
-
         mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.child("Users").hasChild(query)) {
+                if (dataSnapshot.child("Users").hasChild(query)) {
 
-                    if(query.equals(mAuth.getCurrentUser().getDisplayName())) {
+                    if (query.equals(mAuth.getCurrentUser().getDisplayName())) {
 
                         Toast.makeText(SearchActivity.this, "That's you, you little fucker!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         //Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
 
-                        mContactList.add( new Contact(query, "", R.drawable.profile_pic));
+                        mContactList.add(new Contact(query, "", R.drawable.profile_pic, dataSnapshot.child("Users").child(query).child("uid").toString()));
                         createUsersList();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(SearchActivity.this, "No user found", Toast.LENGTH_SHORT).show();
                 }
             }
