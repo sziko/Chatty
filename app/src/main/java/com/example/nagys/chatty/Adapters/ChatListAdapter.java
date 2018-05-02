@@ -53,10 +53,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
         }
     }
 
-    public ChatListAdapter(DatabaseReference reference, String name) {
+    public ChatListAdapter(DatabaseReference reference, String name, String chatID) {
         mDataSnapshots = new ArrayList<>();
 
-        mDatabaseReference = reference.child("Messages");
+        mDatabaseReference = reference.child("Messages").child(chatID);
 
         mDatabaseReference.addChildEventListener(mListener);
 

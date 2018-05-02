@@ -46,7 +46,11 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             // Log.d("Position: ", String.valueOf(getAdapterPosition()));
 
             Context context = itemView.getContext();
-            context.startActivity(new Intent(context, ChatActivity.class));
+            //context.startActivity(new Intent(context, ChatActivity.class));
+
+            Intent startChat = new Intent(context, ChatActivity.class);
+            startChat.putExtra("contactUID", mContactList.get(getAdapterPosition()).getUid());
+            context.startActivity(startChat);
         }
     }
 
