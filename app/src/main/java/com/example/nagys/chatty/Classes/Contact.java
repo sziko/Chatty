@@ -8,6 +8,10 @@ import android.widget.ImageView;
 
 public class Contact {
 
+    /* this class is used to add new
+    * contacts to local database, profile picture
+    * was not yet implemented at the current version*/
+
     private String displayName;
     private String lastMessage;
     private int profilePictureId;

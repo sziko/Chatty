@@ -12,11 +12,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Contacts.db";
-    public static final String TABLE_NAME = "contacts_table";
-    public static final String COL_1 = "UID";
-    public static final String COL_2 = "DN";
-    public static final String COL_3 = "PIC";
+    /* class used to create and manage local database */
+
+    private static final String DATABASE_NAME = "Contacts.db";
+    private static final String TABLE_NAME = "contacts";
+    private static final String COL_1 = "UID";
+    private static final String COL_2 = "DN";
+    private static final String COL_3 = "PIC";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);

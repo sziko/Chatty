@@ -52,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void startContactListActivity() {
+    private void startContactListActivity() { // contacts list
 
         Intent loginIntent = new Intent(MainActivity.this, ContactsActivity.class);
         startActivity(loginIntent);
         finish();
     }
 
-    private void startRegisterActivity() {
+    private void startRegisterActivity() { // register
 
         Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
                         startContactListActivity();
                     }
                     else {
+
+                        hud.dismiss();
                         // login failed
                         Functionality.showErrorDialog("Something went wrong", "Connection failed!", MainActivity.this);
                     }

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.ViewHolder> {
 
-    private List<Contact> mUserList = new ArrayList<>();
+    private List<Contact> mUserList;
     private DatabaseHelper mDatabaseHelper;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -63,8 +63,6 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
 
     public SearchListAdapter(List<Contact> userList) {
         mUserList = userList;
-        //mDatabaseHelper = databaseHelper;
-
     }
 
     @Override

@@ -11,6 +11,8 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class Functionality {
 
+    /* class used for creating customisable progress hud and error dialogs*/
+
     public static KProgressHUD createProgressHud(Context context, String label, String detailsLabel) {
 
        KProgressHUD hud = KProgressHUD.create(context)

@@ -58,8 +58,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                //Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
-                showQueryResult(query);
+                showQueryResult(query); // passing query over
                 searchView.clearFocus();
 
                 return false;
@@ -73,6 +72,7 @@ public class SearchActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //searching for query in firebase db
     private void showQueryResult(final String query) {
 
         mContactList = new ArrayList<>();
@@ -86,15 +86,14 @@ public class SearchActivity extends AppCompatActivity {
 
                     if (query.equals(mAuth.getCurrentUser().getDisplayName())) {
 
-                        Toast.makeText(SearchActivity.this, "That's you, you little fucker!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchActivity.this, "That's you!", Toast.LENGTH_SHORT).show();
                     } else {
-                        //Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
 
                         mContactList.add(new Contact(query, "", R.drawable.profile_pic, dataSnapshot.child("Users").child(query).child("uid").toString()));
                         createUsersList();
                     }
                 } else {
-                    Toast.makeText(SearchActivity.this, "No user found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "No user found", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -105,7 +104,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void createUsersList() {
+    private void createUsersList() { // populating recycler view after user was found in firebase db
 
         mRecyclerView = findViewById(R.id.searchable_recycler_view);
         mRecyclerView.setHasFixedSize(true);

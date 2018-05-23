@@ -90,7 +90,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
         return mDataSnapshots.size();
     }
 
-    private ChildEventListener mListener = new ChildEventListener() {
+    private ChildEventListener mListener = new ChildEventListener() { // notifies the chat recycler view to reload when the firebase db changed
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             mDataSnapshots.add(dataSnapshot);
@@ -122,9 +122,9 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
 
     public void cleanup() {
         mDatabaseReference.removeEventListener(mListener);
-    }
+    } // stops the firebase ChiledEventListener
 
-    private void setChatRowAppearence(boolean isMe, ViewHolder holder) {
+    private void setChatRowAppearence(boolean isMe, ViewHolder holder) { // sets up the appearence of the chat items
 
         if(isMe) {
             holder.getParams().gravity = Gravity.END;

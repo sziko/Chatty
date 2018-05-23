@@ -51,14 +51,17 @@ public class ContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
 
-        mDatabaseHelper = new DatabaseHelper(this);
+        mAuth = FirebaseAuth.getInstance();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+
+        mDatabaseHelper = new DatabaseHelper(this); // database instance
 
         Intent thisIntent = getIntent();
         email = thisIntent.getStringExtra("email");
         uid = thisIntent.getStringExtra("uid");
 
-        mAuth = FirebaseAuth.getInstance();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
 
         if(mAuth.getCurrentUser().getDisplayName() == null) {
             createDisplayName();
@@ -71,7 +74,7 @@ public class ContactsActivity extends AppCompatActivity {
         if(contactsFromDB.getCount() != 0) {
 
 
-            while(contactsFromDB.moveToNext()) {
+            while(contactsFromDB.moveToNext()) { // getting data from db and adding it to mContactList
 
                 String c_uid = contactsFromDB.getString(0);
                 String c_dispName = contactsFromDB.getString(1);
@@ -83,6 +86,7 @@ public class ContactsActivity extends AppCompatActivity {
         }
 
 
+        // setting up the recycler view
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
 
@@ -105,11 +109,8 @@ public class ContactsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.search) {
 
-        }
-
-        if(id == R.id.action_add_contact) {
+        if(id == R.id.action_add_contact) { // add new contact activity
 
             startActivity(new Intent(ContactsActivity.this, SearchActivity.class));
             finish();
@@ -117,7 +118,7 @@ public class ContactsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void createDisplayName() {
+    private void createDisplayName() { // creating display name after registration
 
 
         final EditText editText = new EditText(ContactsActivity.this);
@@ -141,7 +142,7 @@ public class ContactsActivity extends AppCompatActivity {
 
     }
 
-    private void addUserToDatabase() {
+    private void addUserToDatabase() { // adding users to local database
 
         User user = new User(displayName, email, uid);
 
@@ -149,13 +150,13 @@ public class ContactsActivity extends AppCompatActivity {
 
     }
 
-    private void isDisplayNameValid() {
+    private void isDisplayNameValid() { // checking if username is valid or not (has to be unique)
 
         mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.child("Users").hasChild(displayName)) {
+                if(dataSnapshot.child("Users").hasChild(displayName)) { // iterating trough firebase db
 
 
                     new AlertDialog.Builder(ContactsActivity.this)

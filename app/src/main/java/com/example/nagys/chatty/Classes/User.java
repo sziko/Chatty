@@ -6,6 +6,8 @@ package com.example.nagys.chatty.Classes;
 
 public class User {
 
+    /* class used for creating new users in firebase database */
+
     private String displayName;
     private String emailAdress;
     private String uid;
